@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <header>
+        <div class="logo">
+            <i class="fas fa-check-circle"></i>
+            <span>HabitTracker</span>
+        </div>
+        <div class="header-actions">
+            <button id="export-data" class="btn-action"><i class="fas fa-download"></i> Ekspor</button>
+            <button id="import-data" class="btn-action"><i class="fas fa-upload"></i> Impor</button>
+            <div class="theme-toggle">
+                <i class="fas fa-moon active"></i>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-info">
+                <h1>Habit Tracker</h1>
+                <p>Lacak kebiasaan harian Anda untuk hidup lebih produktif</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                </div>
+            </div>
+            <div class="profile-image">
+                <img src="RedHairGirl.jpg" alt="Foto Profil">
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <h2>Statistik Kebiasaan</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-list-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Kebiasaan</h3>
+                        <p id="total-habits">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Streak</h3>
+                        <p id="total-streaks">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Kebiasaan Terbaik</h3>
+                        <p id="best-habit">-</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Rata-rata Progress</h3>
+                        <p id="avg-progress">0%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="habits-section">
+            <h2>Yang Pengen Ku lakukan <button id="add-habit" class="btn-add"><i class="fas fa-plus"></i> Tambah</button></h2>
+            
+            <div class="habits-container">
+                <div class="habit-card">
+                    <div class="habit-header">
+                        <h3>Membaca Buku</h3>
+                        <span class="streak"><i class="fas fa-fire"></i> 7 hari</span>
+                    </div>
+                    <div class="habit-progress">
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="70"></div>
+                        </div>
+                        <span>70%</span>
+                    </div>
+                    <div class="habit-actions">
+                        <button class="btn-check" title="Mark as done"><i class="fas fa-check"></i></button>
+                        <button class="btn-edit" title="Edit habit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete habit"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                
+                <div class="habit-card">
+                    <div class="habit-header">
+                        <h3>Olahraga</h3>
+                        <span class="streak"><i class="fas fa-fire"></i> 3 hari</span>
+                    </div>
+                    <div class="habit-progress">
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="40"></div>
+                        </div>
+                        <span>40%</span>
+                    </div>
+                    <div class="habit-actions">
+                        <button class="btn-check" title="Mark as done"><i class="fas fa-check"></i></button>
+                        <button class="btn-edit" title="Edit habit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete habit"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="habit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Tambah Kebiasaan Baru</h2>
+            <form id="habit-form">
+                <div class="form-group">
+                    <label for="habit-name">Nama Kebiasaan</label>
+                    <input type="text" id="habit-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="habit-category">Kategori</label>
+                    <select id="habit-category" required>
+                        <option value="kesehatan">Kesehatan</option>
+                        <option value="produktivitas">Produktivitas</option>
+                        <option value="pendidikan">Pendidikan</option>
+                        <option value="keuangan">Keuangan</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="habit-goal">Target (hari)</label>
+                    <input type="number" id="habit-goal" min="1" value="30" required>
+                </div>
+                <button type="submit" class="btn-submit">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 HabitTracker. Dibuat oleh <span id="footer-name"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
